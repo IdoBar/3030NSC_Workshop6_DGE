@@ -1,0 +1,29 @@
+name: example-environment
+channels:
+  - conda-forge
+  - r
+dependencies:
+  - r-irkernel=1.1
+  - r-base=3.6.1
+  - r-devtools
+  - r-remotes
+  - r-tidyverse
+  - r-pacman
+  - r-shiny
+  - r-rmarkdown
+  - r-ggpubr
+  - r-paletteer
+  - r-learnr
+  - r-scales
+  - r-captioner
+  - r-here
+  - r-htmltools
+  - r-agricolae
+  - r-car
+  - r-MASS
+  - r-highcharter
+  - r-plotly
+  - r-lubridate
+  - r-ISOweek
+  - r-countrycode
+  - pandoc
