@@ -5,12 +5,7 @@
 Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/IdoBar/3030NSC_Workshop6_DGE/main?urlpath=rstudio)
 <!-- badges: end -->
 
-<script type="text/javascript">
-$(document).ready(function() {
-  $('#header').parent().prepend('<div id=\"Griffith logo\"><img src=\"https://www.griffith.edu.au/__data/assets/image/0018/653121/Griffith_Full_Logo_scaled.png\" style=\"position:absolute; top:50px; right:0; padding:20px; height:120px\"></div>');
-  $('#header').css('margin-right', '120px')
-});
-</script>
+<img src="https://www.griffith.edu.au/__data/assets/image/0018/653121/Griffith_Full_Logo_scaled.png" width="25%" style="display: block; margin: auto 0 auto auto;" />
 
 # 3030NSC Workshop6 - Differential Gene Expression (Binder-ready)
 

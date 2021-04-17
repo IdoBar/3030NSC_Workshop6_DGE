@@ -17,11 +17,8 @@ figs(name="binder_export", "Download files from Binder/RStudio screenshot.")
 figs(name="rstudio_project", "Create a new project in RStudio screenshots.")
 ```
 
-```{js logo-js, echo=FALSE}
-$(document).ready(function() {
-  $('#header').parent().prepend('<div id=\"Griffith logo\"><img src=\"https://www.griffith.edu.au/__data/assets/image/0018/653121/Griffith_Full_Logo_scaled.png\" style=\"position:absolute; top:50px; right:0; padding:20px; height:120px\"></div>');
-  $('#header').css('margin-right', '120px')
-});
+```{r gu_logo, echo=FALSE, out.width = '25%', fig.align='right'}
+knitr::include_graphics("https://www.griffith.edu.au/__data/assets/image/0018/653121/Griffith_Full_Logo_scaled.png")
 ```
 
 # 3030NSC Workshop6 - Differential Gene Expression (Binder-ready)
