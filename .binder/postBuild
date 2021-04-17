@@ -1,2 +1,0 @@
-# mkdir -p data
-R -e "chooseCRANmirror(ind=1); install.packages('BiocManager'); BiocManager::install('DESeq2', update = FALSE); BiocManager::install('EnhancedVolcano', update = FALSE)"
