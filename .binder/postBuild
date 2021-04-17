@@ -1,1 +1,1 @@
-conda install -y -c bioconda bioconductor-deseq2 bioconductor-enhancedvolcano
+# conda install -y -c bioconda bioconductor-deseq2 bioconductor-enhancedvolcano
