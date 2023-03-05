@@ -8,3 +8,35 @@ dependencies:
   - bioconductor-biocinstaller
   - bioconductor-enhancedvolcano
   - bioconductor-deseq2
+  - libgcc 
+  - gnutls 
+  - libuuid 
+  - pandoc 
+  - qt 
+  - scipy 
+  - rclone 
+  - genozip
+  - ncurses 
+  - readline 
+  - git 
+  - libgfortran 
+  - pigz 
+  - biopython
+  - blast 
+  - entrez-direct 
+  - emboss 
+  - fastqc 
+  - multiqc 
+  - parallel 
+  - gawk
+  - bioawk 
+  - hmmer 
+  - pfam_scan 
+  - clustalw 
+  - mustang 
+  - fastqe 
+  - ncbi-datasets-cli 
+  - jq 
+  - unzip
+  - etetoolkit::ete3 
+  - etetoolkit::ete3_external_apps

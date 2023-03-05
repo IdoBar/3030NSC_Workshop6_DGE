@@ -17,7 +17,7 @@ figs(name="binder_export", "Download files from Binder/RStudio screenshot.")
 figs(name="rstudio_project", "Create a new project in RStudio screenshots.")
 ```
 
-```{r gu_logo, echo=FALSE, out.width = '25%', fig.align='right'}
+```{r gu_logo, echo=FALSE, out.width = '25%', fig.align='right', warning=FALSE}
 knitr::include_graphics("https://www.griffith.edu.au/__data/assets/image/0018/653121/Griffith_Full_Logo_scaled.png")
 ```
 
@@ -29,7 +29,8 @@ The tutorial is setup to be run live and interactively in class either setup loc
 
 ## Instructions 
 
-### `r  fa("r-project", fill = "#384CB7")`
+<!-- ### `r  fa("r-project", fill = "#384CB7")` -->
+### R
 
 R is a programming language and free software environment for statistical computing and graphics supported by the R Foundation for Statistical Computing. The R language is widely used among statisticians and data miners for developing statistical software and data analysis.
 
@@ -46,7 +47,7 @@ We will use the [Binder](https://mybinder.org/) service, which is free, easy to 
 Using Binder is as simple as clicking on the Binder badge - [![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/IdoBar/3030NSC_Workshop6_DGE/main?urlpath=rstudio){target="_blank"}.  
 Alternatively, you can navigate to the [Binder](https://mybinder.org/){target="_blank"} homepage and enter the URL of this tutorial [GitHub repository](https://github.com/IdoBar/3030NSC_Workshop6_DGE.git){target="_blank"} `https://github.com/IdoBar/3030NSC_Workshop6_DGE.git` and click on the **launch** button (see screenshot in `r figs(name="binder",display="cite")` below).
  
-```{r binder, echo=FALSE, fig.cap=figs(name="binder"), out.width = '100%'}
+```{r binder, echo=FALSE, fig.cap=figs(name="binder"), out.width = '100%', warning=FALSE}
 knitr::include_graphics("https://github.com/IdoBar/6003ESC_workshops_binder/raw/main/figs/Screenshot_The_Binder_Project.png")
 ```
 
@@ -57,7 +58,7 @@ You should now see in your web browser an RStudio interface (if you got to the J
 After we've finished working on Binder we would like to download the R script that we wrote and any output files (summary tables and figures). We can access those files by using the `files` tab in RStudio (bottom right pane).  
 Select the files/folders that you would like to download and click on `r  fa("cog", fill ="#4383A4")`More `r fa("long-arrow-alt-right")` Export... (see screenshot in `r figs(name="binder_export",display="cite")` below) to save the file on your computer.  
 
-```{r binder_export, echo=FALSE, fig.cap=figs(name="binder_export"), out.width = '75%'}
+```{r binder_export, echo=FALSE, fig.cap=figs(name="binder_export"), out.width = '75%', warning=FALSE}
 knitr::include_graphics("https://github.com/IdoBar/6003ESC_workshops_binder/raw/main/figs/Rstudio_export_screenshot.png")
 ```
 
@@ -73,7 +74,7 @@ Regardless whether we installed R and RStudio locally or we use the Binder servi
 2. Start a new project by selecting "File --> New Project" or clicking on the "New Project" icon (under "Edit" in the taskbar).  
 3. Select "New Directory --> New Project" and then enter "Workshop1" in the Directory name text box and browse to the "wrokspace" folder to create the project folder in (see screenshots A-D in `r figs(name="rstudio_project",display="cite")` below)
  
-```{r rstudio_proj, echo=FALSE, fig.cap=figs(name="rstudio_project"), out.width = '100%'}
+```{r rstudio_proj, echo=FALSE, fig.cap=figs(name="rstudio_project"), out.width = '100%', warning=FALSE}
 knitr::include_graphics("https://github.com/IdoBar/6003ESC_workshops_binder/raw/main/figs/RStudio_create_project.png")
 ```
 
@@ -86,6 +87,19 @@ R can be extended with additional functionality by installing external packages 
 
 Please note that the required packages for this workshop are already pre-installed in Binder, but they will need to be installed if you chose to run the analysis locally.  
 To install these packages, we use the `install.packages('package')` command (or `BiocManager::install('package')` if installing from BioConductor), please note that the package name need to be quoted and that we only need to be perform it once, or when we want or need to update the package.  Once the package was installed, we can load its functions using the `library(package)` command. _Note that in this case we use the package name without quotes!_.
+
+Installing new packages in R can sometimes be quite challenging and time-consuming using the general approach described below, however, I recently found an auxiliary package called [pak](https://pak.r-lib.org/){target="_blank"}, that makes installing other packages a breeze, reagrdless if their hosted on CRAN or on BioConductor so we will use it throughout these workshops.
+
+
+```{r install_packages, eval=FALSE}
+# install required packages - needed only once! (comment with a # after first use)
+install.packages("pak")
+# load the package
+library(pak)
+pkg_install("DESeq2")  
+pkg_install("EnhancedVolcano")
+
+```
 
 ### Additional Information
 
