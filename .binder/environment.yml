@@ -24,7 +24,6 @@ dependencies:
   - gawk
   - unzip
   - biopython 
-  - ete3
   - blast 
   - entrez-direct 
   - emboss
@@ -36,3 +35,5 @@ dependencies:
   - fastqe 
   - ncbi-datasets-cli 
   - jq
+  - phyml
+  - bioconvert
