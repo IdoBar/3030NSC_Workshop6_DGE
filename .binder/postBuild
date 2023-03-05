@@ -1,3 +1,9 @@
+CONDA_ENV=nsc3030
+mamba create --name $CONDA_ENV libgcc gnutls libuuid pandoc qt scipy rclone genozip \
+   ncurses readline git libgfortran pigz biopython ete3 etetoolkit::ete_toolchain \
+    etetoolkit::ete3_external_apps blast entrez-direct emboss fastqc multiqc parallel gawk \
+   bioawk hmmer pfam_scan clustalw mustang fastqe ncbi-datasets-cli jq unzip # fasttree 
+conda activate $CONDA_ENV
 # make all the ete3-apps available (except fasttree)
 printf '#!/bin/sh\n export PATH=$PATH:$CONDA_PREFIX/bin/ete3_apps/bin\nexport \
 MAFFT_BINARIES=$CONDA_PREFIX/bin/ete3_apps/bin\n' > $CONDA_PREFIX/etc/conda/activate.d/ete3_bin.sh
@@ -20,7 +26,6 @@ find `pwd` -type f -executable | parallel  ln -s {} $CONDA_PREFIX/bin/ # link to
 # install ncbi databases
 printf '; Start the section for BLAST configuration\n[BLAST]\n; Specifies the path where BLAST databases are installed\nBLASTDB=~/etc/databases\n' > $HOME/.ncbirc
 mkdir -p ~/etc/databases && cd ~/etc/databases
-source ~/.bash
 update_blastdb.pl --source GCS taxdb swissprot 16S_ribosomal_RNA
 # install additional tools
 cd ~/etc/tools
