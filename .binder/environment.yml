@@ -37,3 +37,4 @@ dependencies:
   - jq
   - phyml
   - bioconvert
+  - probcons

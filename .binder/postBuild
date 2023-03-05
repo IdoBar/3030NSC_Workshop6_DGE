@@ -7,11 +7,11 @@ CONDA_DIR="/srv/conda/envs/notebook/"
 find $CONDA_DIR -name "*.pl" | parallel -q sed -i.bak 's|!/usr/bin/perl|!/usr/bin/env perl|' {}
 # install additional tools (probcons, bioinformatics-hacks)
 mkdir -p ~/etc/tools && cd ~/etc/tools
-wget http://probcons.stanford.edu/probcons_v1_12.tar.gz && tar xzf probcons_v1_12.tar.gz && cd probcons
+# wget http://probcons.stanford.edu/probcons_v1_12.tar.gz && tar xzf probcons_v1_12.tar.gz && cd probcons
 # fix compiler headers, see https://stackoverflow.com/questions/9403975/strcmp-was-not-declared-in-this-scope
-parallel -q sed -i.bak 's/#include <string>/#include <string.h>/' ::: *.cc  
-make
-find `pwd` -type f -executable | parallel  ln -s {} $CONDA_DIR/bin/ # link to conda binaries folder
+# parallel -q sed -i.bak 's/#include <string>/#include <string.h>/' ::: *.cc  
+# make
+# find `pwd` -type f -executable | parallel  ln -s {} $CONDA_DIR/bin/ # link to conda binaries folder
 git clone https://github.com/audy/bioinformatics-hacks.git && cd bioinformatics-hacks/bin
 find `pwd` -type f -executable | parallel  ln -s {} $CONDA_DIR/bin/ # link to conda binaries folder
 # install ncbi databases
