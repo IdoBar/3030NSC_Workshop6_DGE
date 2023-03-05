@@ -15,8 +15,6 @@ dependencies:
   - pandoc 
   - qt 
   - scipy 
-  - rclone 
-  - genozip
   - ncurses 
   - readline 
   - git 
@@ -25,3 +23,16 @@ dependencies:
   - parallel 
   - gawk
   - unzip
+  - biopython 
+  - ete3
+  - blast 
+  - entrez-direct 
+  - emboss
+  - bioawk 
+  - hmmer 
+  - pfam_scan 
+  - clustalw 
+  - mustang 
+  - fastqe 
+  - ncbi-datasets-cli 
+  - jq
