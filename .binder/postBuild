@@ -1,4 +1,8 @@
 CONDA_ENV=nsc3030
+conda config --add channels conda-forge
+conda config --append channels bioconda
+conda init bash
+source ~/.bashrc
 mamba create --name $CONDA_ENV libgcc gnutls libuuid pandoc qt scipy rclone genozip \
    ncurses readline git libgfortran pigz biopython ete3 etetoolkit::ete_toolchain \
     etetoolkit::ete3_external_apps blast entrez-direct emboss fastqc multiqc parallel gawk \
