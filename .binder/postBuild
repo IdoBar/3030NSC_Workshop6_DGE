@@ -1,32 +1,35 @@
+#!/bin/bash
+set -euxo pipefail
 CONDA_ENV=nsc3030
 conda config --add channels conda-forge
 conda config --append channels bioconda
-conda init bash
+mamba init bash
 source ~/.bashrc
 mamba create --name $CONDA_ENV libgcc gnutls libuuid pandoc qt scipy rclone genozip \
    ncurses readline git libgfortran pigz biopython ete3 etetoolkit::ete_toolchain \
     etetoolkit::ete3_external_apps blast entrez-direct emboss fastqc multiqc parallel gawk \
    bioawk hmmer pfam_scan clustalw mustang fastqe ncbi-datasets-cli jq unzip # fasttree 
-conda activate $CONDA_ENV
+mamba activate $CONDA_ENV
+CONDA_DIR="/srv/conda/envs/notebook/envs/$CONDA_ENV"
 # make all the ete3-apps available (except fasttree)
-printf '#!/bin/sh\n export PATH=$PATH:$CONDA_PREFIX/bin/ete3_apps/bin\nexport \
-MAFFT_BINARIES=$CONDA_PREFIX/bin/ete3_apps/bin\n' > $CONDA_PREFIX/etc/conda/activate.d/ete3_bin.sh
+printf '#!/bin/sh\n export PATH=$PATH:$CONDA_DIR/bin/ete3_apps/bin\nexport \
+MAFFT_BINARIES=$CONDA_DIR/bin/ete3_apps/bin\n' > $CONDA_DIR/etc/conda/activate.d/ete3_bin.sh
 ete3 build check 2>&1 | grep MISSING | sed -r 's/ //g; s/:.+//' | \
-   parallel "ln -s $CONDA_PREFIX/bin/{} $CONDA_PREFIX/bin/ete3_apps/bin/"
-ln -sf $CONDA_PREFIX/bin/ete3_apps/bin/Slr $CONDA_PREFIX/bin/ete3_apps/bin/slr
-ln -sf $CONDA_PREFIX/bin/t_coffee $CONDA_PREFIX/bin/ete3_apps/bin/
-ln -sf $CONDA_PREFIX/bin/ete3_apps/bin/t_coffee $CONDA_PREFIX/bin/ete3_apps/bin/tcoffee
+   parallel "ln -s $CONDA_DIR/bin/{} $CONDA_DIR/bin/ete3_apps/bin/"
+ln -sf $CONDA_DIR/bin/ete3_apps/bin/Slr $CONDA_DIR/bin/ete3_apps/bin/slr
+ln -sf $CONDA_DIR/bin/t_coffee $CONDA_DIR/bin/ete3_apps/bin/
+ln -sf $CONDA_DIR/bin/ete3_apps/bin/t_coffee $CONDA_DIR/bin/ete3_apps/bin/tcoffee
 # fix all perl executables to use the correct perl version
-find $CONDA_PREFIX -name "*.pl" | parallel -q sed -i.bak 's|!/usr/bin/perl|!/usr/bin/env perl|' {}
+find $CONDA_DIR -name "*.pl" | parallel -q sed -i.bak 's|!/usr/bin/perl|!/usr/bin/env perl|' {}
 # install additional tools (probcons, bioinformatics-hacks)
 mkdir -p ~/etc/tools && cd ~/etc/tools
 wget http://probcons.stanford.edu/probcons_v1_12.tar.gz && tar xzf probcons_v1_12.tar.gz && cd probcons
 # fix compiler headers, see https://stackoverflow.com/questions/9403975/strcmp-was-not-declared-in-this-scope
 parallel -q sed -i.bak 's/#include <string>/#include <string.h>/' ::: *.cc  
 make
-find `pwd` -type f -executable | parallel  ln -s {} $CONDA_PREFIX/bin/ # link to conda binaries folder
+find `pwd` -type f -executable | parallel  ln -s {} $CONDA_DIR/bin/ # link to conda binaries folder
 git clone https://github.com/audy/bioinformatics-hacks.git && cd bioinformatics-hacks/bin
-find `pwd` -type f -executable | parallel  ln -s {} $CONDA_PREFIX/bin/ # link to conda binaries folder
+find `pwd` -type f -executable | parallel  ln -s {} $CONDA_DIR/bin/ # link to conda binaries folder
 # install ncbi databases
 printf '; Start the section for BLAST configuration\n[BLAST]\n; Specifies the path where BLAST databases are installed\nBLASTDB=~/etc/databases\n' > $HOME/.ncbirc
 mkdir -p ~/etc/databases && cd ~/etc/databases
@@ -42,4 +45,4 @@ wget https://www.drive5.com/qscore/qscore_src.tar.gz && tar xzvf qscore_src.tar.
 # Fix qscore.h file, see https://www.biostars.org/p/288471/
 sed -i.bak 's/#include <errno.h>/#include <errno.h>\n#include <climits>/' qscore.h
 make && cp qscore ../
-ln -s ~/etc/tools/bench1.0/qscore $CONDA_PREFIX/bin/ # link to conda binaries folder
+ln -s ~/etc/tools/bench1.0/qscore $CONDA_DIR/bin/ # link to conda binaries folder
