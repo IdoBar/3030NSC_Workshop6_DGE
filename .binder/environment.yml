@@ -33,7 +33,7 @@ dependencies:
   - clustalw 
   - mustang 
   - fastqe 
-  - ncbi-datasets-cli 
+  - ncbi-datasets-cli=13.42.2
   - jq
   - phyml
   - bioconvert
